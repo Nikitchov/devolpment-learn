@@ -1,0 +1,803 @@
+[
+    {
+      "id": 1,
+      "question": "Что такое hoisting в JavaScript?",
+      "answer": "Подъем объявлений переменных и функций",
+      "explanation": "Hoisting — это механизм, при котором объявления `var` и функций поднимаются в начало их области видимости перед выполнением кода. Инициализация переменных не поднимается. Пример:\n```javascript\nconsole.log(x); // undefined\nvar x = 5;\nconsole.log(x); // 5\n// Эквивалентно:\nvar x;\nconsole.log(x);\nx = 5;\nconsole.log(x);\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 2,
+      "question": "Как работает метод Array.prototype.map?",
+      "answer": "Создает новый массив с результатами функции",
+      "explanation": "Метод `map` вызывает функцию для каждого элемента массива и возвращает новый массив с результатами. Исходный массив не изменяется. Пример:\n```javascript\nconst numbers = [1, 2, 3];\nconst doubled = numbers.map(num => num * 2);\nconsole.log(doubled); // [2, 4, 6]\nconsole.log(numbers); // [1, 2, 3]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 3,
+      "question": "Что такое Event Loop в JavaScript?",
+      "answer": "Механизм обработки асинхронных задач",
+      "explanation": "Event Loop управляет асинхронными операциями, помещая задачи из очереди в стек вызовов, когда стек пуст. Это обеспечивает неблокирующее выполнение. Пример:\n```javascript\nconsole.log('Start');\nsetTimeout(() => console.log('Timeout'), 0);\nconsole.log('End');\n// Вывод: Start, End, Timeout\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 4,
+      "question": "Для чего используется `this` в JavaScript?",
+      "answer": "Ссылка на текущий объект контекста",
+      "explanation": "Ключевое слово `this` указывает на объект, в контексте которого выполняется функция. Значение зависит от вызова. Пример:\n```javascript\nconst obj = {\n  name: 'Alice',\n  greet() { return `Hello, ${this.name}`; }\n};\nconsole.log(obj.greet()); // Hello, Alice\nconst greet = obj.greet;\nconsole.log(greet()); // Hello, undefined (this = global/window)\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 5,
+      "question": "Что такое замыкания в JavaScript?",
+      "answer": "Функция с доступом к внешним переменным",
+      "explanation": "Замыкание — это функция, которая запоминает переменные из внешней области видимости. Используется для приватных данных. Пример:\n```javascript\nfunction counter() {\n  let count = 0;\n  return () => count++;\n}\nconst increment = counter();\nconsole.log(increment()); // 0\nconsole.log(increment()); // 1\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 6,
+      "question": "Что делает оператор `??` в JavaScript?",
+      "answer": "Возвращает правое значение, если левое null или undefined",
+      "explanation": "Нулевой оператор слияния (`??`) возвращает правое значение, если левое `null` или `undefined`. Не реагирует на другие falsy значения. Пример:\n```javascript\nconst value = null ?? 'default';\nconsole.log(value); // default\nconst zero = 0 ?? 42;\nconsole.log(zero); // 0\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 7,
+      "question": "Как работает Promise в JavaScript?",
+      "answer": "Объект для асинхронных операций",
+      "explanation": "Promise представляет асинхронную операцию с состояниями: pending, fulfilled, rejected. Используется с `.then()`, `.catch()`. Пример:\n```javascript\nconst promise = new Promise((resolve, reject) => {\n  setTimeout(() => resolve('Success'), 1000);\n});\npromise.then(result => console.log(result)); // Success после 1 сек\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 8,
+      "question": "Что такое IIFE в JavaScript?",
+      "answer": "Самовызывающаяся функция",
+      "explanation": "IIFE (Immediately Invoked Function Expression) — функция, которая вызывается сразу после определения. Используется для изоляции области видимости. Пример:\n```javascript\n(function() {\n  const x = 10;\n  console.log(x); // 10\n})();\nconsole.log(typeof x); // undefined\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 9,
+      "question": "Для чего нужен метод `bind`?",
+      "answer": "Фиксирует контекст `this` для функции",
+      "explanation": "Метод `bind` создает новую функцию с фиксированным `this` и аргументами. Полезно для коллбэков. Пример:\n```javascript\nconst obj = { name: 'Alice' };\nfunction greet() { return `Hello, ${this.name}`; }\nconst boundGreet = greet.bind(obj);\nconsole.log(boundGreet()); // Hello, Alice\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 10,
+      "question": "Что такое дебouncing?",
+      "answer": "Ограничение частоты вызова функции",
+      "explanation": "Дебouncing ограничивает вызов функции до завершения паузы в серии вызовов. Пример:\n```javascript\nfunction debounce(fn, delay) {\n  let timeout;\n  return function(...args) {\n    clearTimeout(timeout);\n    timeout = setTimeout(() => fn(...args), delay);\n  };\n}\nconst log = debounce(() => console.log('Called'), 1000);\nlog(); log(); // Вызывается один раз через 1 сек\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 11,
+      "question": "Что такое `let` против `var`?",
+      "answer": "`let` имеет блочную область видимости",
+      "explanation": "`let` ограничивает переменную блоком, `var` — функцией. `let` не допускает повторного объявления. Пример:\n```javascript\nif (true) {\n  var x = 1;\n  let y = 2;\n}\nconsole.log(x); // 1\nconsole.log(y); // ReferenceError: y is not defined\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 12,
+      "question": "Для чего нужен `const`?",
+      "answer": "Объявление неизменяемых переменных",
+      "explanation": "`const` предотвращает переназначение, но объекты/массивы можно изменять. Пример:\n```javascript\nconst x = 10;\nx = 20; // TypeError\nconst obj = { a: 1 };\nobj.a = 2; // OK\nconsole.log(obj); // { a: 2 }\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 13,
+      "question": "Что такое стрелочные функции?",
+      "answer": "Краткий синтаксис без собственного `this`",
+      "explanation": "Стрелочные функции имеют лексический `this` и не создают собственный контекст. Пример:\n```javascript\nconst obj = {\n  name: 'Alice',\n  greet: () => this.name,\n  greetRegular: function() { return this.name; }\n};\nconsole.log(obj.greet()); // undefined\nconsole.log(obj.greetRegular()); // Alice\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 14,
+      "question": "Как работает `async/await`?",
+      "answer": "Упрощает работу с Promises",
+      "explanation": "`async` делает функцию возвращающей Promise, `await` ожидает его разрешения. Пример:\n```javascript\nasync function fetchData() {\n  try {\n    const response = await fetch('https://api.example.com');\n    return await response.json();\n  } catch (error) {\n    console.error(error);\n  }\n}\nfetchData().then(data => console.log(data));\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 15,
+      "question": "Что такое `WeakMap`?",
+      "answer": "Карта со слабыми ключами",
+      "explanation": "`WeakMap` хранит ключи-объекты, которые могут быть собраны сборщиком мусора. Пример:\n```javascript\nconst wm = new WeakMap();\nlet key = {};\nwm.set(key, 'value');\nconsole.log(wm.get(key)); // value\nkey = null; // Объект может быть удален\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 16,
+      "question": "Для чего нужен `Symbol`?",
+      "answer": "Создание уникальных идентификаторов",
+      "explanation": "`Symbol` создает уникальные примитивы, часто используемые как ключи объектов. Пример:\n```javascript\nconst sym = Symbol('id');\nconst obj = { [sym]: 123 };\nconsole.log(obj[sym]); // 123\nconsole.log(Object.keys(obj)); // []\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 17,
+      "question": "Что такое `Array.prototype.filter`?",
+      "answer": "Создает массив элементов, прошедших тест",
+      "explanation": "`filter` возвращает новый массив с элементами, для которых функция вернула `true`. Пример:\n```javascript\nconst numbers = [1, 2, 3, 4];\nconst evens = numbers.filter(num => num % 2 === 0);\nconsole.log(evens); // [2, 4]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 18,
+      "question": "Как работает `Array.prototype.reduce`?",
+      "answer": "Сводит массив к одному значению",
+      "explanation": "`reduce` применяет функцию к аккумулятору и каждому элементу, возвращая одно значение. Пример:\n```javascript\nconst numbers = [1, 2, 3];\nconst sum = numbers.reduce((acc, num) => acc + num, 0);\nconsole.log(sum); // 6\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 19,
+      "question": "Что такое модули ES?",
+      "answer": "Система импорта/экспорта кода",
+      "explanation": "Модули ES позволяют организовать код с помощью `import` и `export`. Пример:\n```javascript\n// math.js\nexport const add = (a, b) => a + b;\n// main.js\nimport { add } from './math.js';\nconsole.log(add(2, 3)); // 5\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 20,
+      "question": "Для чего нужен `Object.defineProperty`?",
+      "answer": "Определяет свойства объекта",
+      "explanation": "Метод позволяет задавать свойства объекта с настройками (например, `writable`, `configurable`). Пример:\n```javascript\nconst obj = {};\nObject.defineProperty(obj, 'prop', {\n  value: 42,\n  writable: false\n});\nconsole.log(obj.prop); // 42\nobj.prop = 100; // Не изменится\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 21,
+      "question": "Что такое `Proxy` в JavaScript?",
+      "answer": "Объект для перехвата операций",
+      "explanation": "`Proxy` позволяет перехватывать операции над объектом (чтение, запись). Пример:\n```javascript\nconst target = { value: 42 };\nconst proxy = new Proxy(target, {\n  get: (obj, prop) => `Accessed ${prop}: ${obj[prop]}`\n});\nconsole.log(proxy.value); // Accessed value: 42\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 22,
+      "question": "Как работает `try/catch`?",
+      "answer": "Обработка ошибок",
+      "explanation": "`try/catch` перехватывает ошибки в блоке кода. Пример:\n```javascript\ntry {\n  throw new Error('Oops');\n} catch (error) {\n  console.log(error.message); // Oops\n}\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 23,
+      "question": "Что такое `setTimeout`?",
+      "answer": "Запускает функцию с задержкой",
+      "explanation": "`setTimeout` выполняет функцию после указанной задержки. Пример:\n```javascript\nsetTimeout(() => console.log('Delayed'), 1000);\n// Вывод через 1 сек: Delayed\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 24,
+      "question": "Для чего нужен `setInterval`?",
+      "answer": "Повторяет функцию с интервалом",
+      "explanation": "`setInterval` вызывает функцию через заданный интервал. Пример:\n```javascript\nlet count = 0;\nconst id = setInterval(() => {\n  console.log(count++);\n  if (count === 3) clearInterval(id);\n}, 1000);\n// Вывод: 0, 1, 2 каждую секунду\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 25,
+      "question": "Что такое `JSON.parse`?",
+      "answer": "Преобразует строку JSON в объект",
+      "explanation": "`JSON.parse` преобразует строку JSON в JavaScript-объект. Пример:\n```javascript\nconst json = '{\"name\": \"Alice\", \"age\": 30}';\nconst obj = JSON.parse(json);\nconsole.log(obj.name); // Alice\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 26,
+      "question": "Что такое `JSON.stringify`?",
+      "answer": "Преобразует объект в строку JSON",
+      "explanation": "`JSON.stringify` преобразует объект в строку JSON. Пример:\n```javascript\nconst obj = { name: 'Alice', age: 30 };\nconst json = JSON.stringify(obj);\nconsole.log(json); // {\"name\":\"Alice\",\"age\":30}\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 27,
+      "question": "Как работает `Array.prototype.forEach`?",
+      "answer": "Выполняет функцию для каждого элемента",
+      "explanation": "`forEach` вызывает функцию для каждого элемента массива, не возвращая ничего. Пример:\n```javascript\nconst numbers = [1, 2, 3];\nnumbers.forEach(num => console.log(num * 2)); // 2, 4, 6\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 28,
+      "question": "Что такое `Array.prototype.find`?",
+      "answer": "Возвращает первый элемент, прошедший тест",
+      "explanation": "`find` возвращает первый элемент массива, для которого функция вернула `true`. Пример:\n```javascript\nconst numbers = [1, 2, 3, 4];\nconst even = numbers.find(num => num % 2 === 0);\nconsole.log(even); // 2\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 29,
+      "question": "Что такое `Array.prototype.some`?",
+      "answer": "Проверяет, есть ли элементы, прошедшие тест",
+      "explanation": "`some` возвращает `true`, если хотя бы один элемент проходит тест. Пример:\n```javascript\nconst numbers = [1, 3, 4];\nconst hasEven = numbers.some(num => num % 2 === 0);\nconsole.log(hasEven); // true\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 30,
+      "question": "Что такое `Array.prototype.every`?",
+      "answer": "Проверяет, все ли элементы прошли тест",
+      "explanation": "`every` возвращает `true`, если все элементы проходят тест. Пример:\n```javascript\nconst numbers = [2, 4, 6];\nconst allEven = numbers.every(num => num % 2 === 0);\nconsole.log(allEven); // true\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 31,
+      "question": "Что такое деструктуризация?",
+      "answer": "Извлечение значений из объектов/массивов",
+      "explanation": "Деструктуризация упрощает доступ к свойствам объектов или элементам массивов. Пример:\n```javascript\nconst { name, age } = { name: 'Alice', age: 30 };\nconsole.log(name, age); // Alice 30\nconst [a, b] = [1, 2];\nconsole.log(a, b); // 1 2\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 32,
+      "question": "Для чего нужен оператор `...` (spread)?",
+      "answer": "Распаковка элементов или копирование",
+      "explanation": "Оператор spread распаковывает элементы массива или свойства объекта. Пример:\n```javascript\nconst arr1 = [1, 2];\nconst arr2 = [...arr1, 3, 4];\nconsole.log(arr2); // [1, 2, 3, 4]\nconst obj1 = { a: 1 };\nconst obj2 = { ...obj1, b: 2 };\nconsole.log(obj2); // { a: 1, b: 2 }\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 33,
+      "question": "Что такое оператор `...` (rest)?",
+      "answer": "Сбор аргументов в массив",
+      "explanation": "Оператор rest собирает оставшиеся аргументы в массив. Пример:\n```javascript\nfunction sum(...numbers) {\n  return numbers.reduce((acc, num) => acc + num, 0);\n}\nconsole.log(sum(1, 2, 3)); // 6\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 34,
+      "question": "Что такое `Map` в JavaScript?",
+      "answer": "Коллекция пар ключ-значение",
+      "explanation": "`Map` хранит пары ключ-значение, где ключи могут быть любого типа. Пример:\n```javascript\nconst map = new Map();\nmap.set('key', 'value');\nmap.set(1, 'number');\nconsole.log(map.get('key')); // value\nconsole.log(map.size); // 2\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 35,
+      "question": "Что такое `Set` в JavaScript?",
+      "answer": "Коллекция уникальных значений",
+      "explanation": "`Set` хранит уникальные значения любого типа. Пример:\n```javascript\nconst set = new Set([1, 2, 2, 3]);\nconsole.log(set.size); // 3\nset.add(4);\nconsole.log([...set]); // [1, 2, 3, 4]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 36,
+      "question": "Как работает `Object.keys`?",
+      "answer": "Возвращает массив ключей объекта",
+      "explanation": "`Object.keys` возвращает массив перечисляемых ключей объекта. Пример:\n```javascript\nconst obj = { a: 1, b: 2, c: 3 };\nconsole.log(Object.keys(obj)); // ['a', 'b', 'c']\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 37,
+      "question": "Как работает `Object.values`?",
+      "answer": "Возвращает массив значений объекта",
+      "explanation": "`Object.values` возвращает массив значений перечисляемых свойств. Пример:\n```javascript\nconst obj = { a: 1, b: 2, c: 3 };\nconsole.log(Object.values(obj)); // [1, 2, 3]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 38,
+      "question": "Как работает `Object.entries`?",
+      "answer": "Возвращает массив пар [ключ, значение]",
+      "explanation": "`Object.entries` возвращает массив массивов, где каждый подмассив — это [ключ, значение]. Пример:\n```javascript\nconst obj = { a: 1, b: 2 };\nconsole.log(Object.entries(obj)); // [['a', 1], ['b', 2]]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 39,
+      "question": "Что такое `Array.prototype.slice`?",
+      "answer": "Возвращает копию части массива",
+      "explanation": "`slice` возвращает новый массив с элементами от начального до конечного индекса (не включая конечный). Пример:\n```javascript\nconst arr = [1, 2, 3, 4];\nconsole.log(arr.slice(1, 3)); // [2, 3]\nconsole.log(arr); // [1, 2, 3, 4]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 40,
+      "question": "Что такое `Array.prototype.splice`?",
+      "answer": "Изменяет массив, добавляя/удаляя элементы",
+      "explanation": "`splice` изменяет массив, удаляя или добавляя элементы с указанного индекса. Пример:\n```javascript\nconst arr = [1, 2, 3, 4];\narr.splice(1, 2, 'a', 'b');\nconsole.log(arr); // [1, 'a', 'b', 4]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 41,
+      "question": "Что такое `typeof` оператор?",
+      "answer": "Возвращает тип значения",
+      "explanation": "`typeof` возвращает строку, указывающую тип операнда. Пример:\n```javascript\nconsole.log(typeof 42); // 'number'\nconsole.log(typeof 'text'); // 'string'\nconsole.log(typeof null); // 'object'\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 42,
+      "question": "Что такое `instanceof` оператор?",
+      "answer": "Проверяет принадлежность к классу",
+      "explanation": "`instanceof` проверяет, является ли объект экземпляром указанного конструктора. Пример:\n```javascript\nclass MyClass {}\nconst obj = new MyClass();\nconsole.log(obj instanceof MyClass); // true\nconsole.log(obj instanceof Object); // true\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 43,
+      "question": "Как работает `new` оператор?",
+      "answer": "Создает экземпляр объекта",
+      "explanation": "`new` создает объект, вызывает конструктор и устанавливает `this`. Пример:\n```javascript\nfunction Person(name) {\n  this.name = name;\n}\nconst alice = new Person('Alice');\nconsole.log(alice.name); // Alice\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 44,
+      "question": "Что такое прототипы в JavaScript?",
+      "answer": "Механизм наследования",
+      "explanation": "Каждый объект имеет прототип, от которого наследует свойства. Пример:\n```javascript\nfunction Animal() {}\nAnimal.prototype.speak = function() { return 'Sound'; }\nconst dog = new Animal();\nconsole.log(dog.speak()); // Sound\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 45,
+      "question": "Как работает `Object.create`?",
+      "answer": "Создает объект с указанным прототипом",
+      "explanation": "`Object.create` создает объект, наследующий указанный прототип. Пример:\n```javascript\nconst proto = { greet: () => 'Hello' };\nconst obj = Object.create(proto);\nconsole.log(obj.greet()); // Hello\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 46,
+      "question": "Что такое `call` метод?",
+      "answer": "Вызывает функцию с указанным `this`",
+      "explanation": "`call` вызывает функцию, задавая `this` и аргументы. Пример:\n```javascript\nfunction greet() { return `Hello, ${this.name}`; }\nconst obj = { name: 'Alice' };\nconsole.log(greet.call(obj)); // Hello, Alice\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 47,
+      "question": "Что такое `apply` метод?",
+      "answer": "Вызывает функцию с массивом аргументов",
+      "explanation": "`apply` похож на `call`, но принимает аргументы как массив. Пример:\n```javascript\nfunction sum(a, b) { return a + b; }\nconsole.log(sum.apply(null, [1, 2])); // 3\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 48,
+      "question": "Что такое `class` в JavaScript?",
+      "answer": "Синтаксис для создания объектов",
+      "explanation": "`class` упрощает создание объектов и наследование. Пример:\n```javascript\nclass Person {\n  constructor(name) { this.name = name; }\n  greet() { return `Hello, ${this.name}`; }\n}\nconst alice = new Person('Alice');\nconsole.log(alice.greet()); // Hello, Алиса\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 49,
+      "question": "Как работает наследование в классах?",
+      "answer": "Через ключевое слово `extends`",
+      "explanation": "`extends` позволяет классу наследовать свойства и методы другого класса. Пример:\n```javascript\nclass Animal {\n  speak() { return 'Sound'; }\n}\nclass Dog extends Animal {\n  speak() { return 'Woof'; }\n}\nconst dog = new Dog();\nconsole.log(dog.speak()); // Woof\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 50,
+      "question": "Что такое `super` в классах?",
+      "answer": "Вызывает родительский конструктор или метод",
+      "explanation": "`super` используется для доступа к родительскому классу. Пример:\n```javascript\nclass Animal {\n  constructor(name) { this.name = name; }\n}\nclass Dog extends Animal {\n  constructor(name, breed) {\n    super(name);\n    this.breed = breed;\n  }\n}\nconst dog = new Dog('Rex', 'Labrador');\nconsole.log(dog.name, dog.breed); // Rex Labrador\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 51,
+      "question": "Что такое генераторы в JavaScript?",
+      "answer": "Функции, возвращающие итераторы",
+      "explanation": "Генераторы используют `function*` и `yield` для возврата значений по одному. Пример:\n```javascript\nfunction* generator() {\n  yield 1;\n  yield 2;\n  yield 3;\n}\nconst gen = generator();\nconsole.log(gen.next().value); // 1\nconsole.log(gen.next().value); // 2\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 52,
+      "question": "Что такое итераторы?",
+      "answer": "Объекты с методом `next`",
+      "explanation": "Итераторы предоставляют последовательный доступ к элементам. Пример:\n```javascript\nconst arr = [1, 2];\nconst iterator = arr[Symbol.iterator]();\nconsole.log(iterator.next().value); // 1\nconsole.log(iterator.next().value); // 2\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 53,
+      "question": "Что такое `for...of` цикл?",
+      "answer": "Итерация по итерируемым объектам",
+      "explanation": "`for...of` перебирает значения итерируемых объектов. Пример:\n```javascript\nconst arr = [1, 2, 3];\nfor (const value of arr) {\n  console.log(value); // 1, 2, 3\n}\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 54,
+      "question": "Что такое `for...in` цикл?",
+      "answer": "Итерация по ключам объекта",
+      "explanation": "`for...in` перебирает перечисляемые свойства объекта. Пример:\n```javascript\nconst obj = { a: 1, b: 2 };\nfor (const key in obj) {\n  console.log(key, obj[key]); // a 1, b 2\n}\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 55,
+      "question": "Что такое `Array.prototype.concat`?",
+      "answer": "Объединяет массивы",
+      "explanation": "`concat` создает новый массив, объединяя исходный с другими массивами или значениями. Пример:\n```javascript\nconst arr1 = [1, 2];\nconst arr2 = [3, 4];\nconst result = arr1.concat(arr2);\nconsole.log(result); // [1, 2, 3, 4]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 56,
+      "question": "Что такое `Array.prototype.join`?",
+      "answer": "Объединяет элементы в строку",
+      "explanation": "`join` создает строку из элементов массива, разделяя их указанным разделителем. Пример:\n```javascript\nconst arr = ['a', 'b', 'c'];\nconsole.log(arr.join('-')); // a-b-c\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 57,
+      "question": "Что такое `Array.prototype.reverse`?",
+      "answer": "Переворачивает массив",
+      "explanation": "`reverse` изменяет исходный массив, переворачивая порядок элементов. Пример:\n```javascript\nconst arr = [1, 2, 3];\narr.reverse();\nconsole.log(arr); // [3, 2, 1]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 58,
+      "question": "Что такое `Array.prototype.sort`?",
+      "answer": "Сортирует массив",
+      "explanation": "`sort` изменяет массив, сортируя элементы. Можно передать функцию сравнения. Пример:\n```javascript\nconst arr = [3, 1, 2];\narr.sort((a, b) => a - b);\nconsole.log(arr); // [1, 2, 3]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 59,
+      "question": "Что такое `Math.random`?",
+      "answer": "Генерирует случайное число",
+      "explanation": "`Math.random` возвращает число от 0 (включительно) до 1 (исключительно). Пример:\n```javascript\nconsole.log(Math.random()); // Например, 0.723\n// Случайное целое от 1 до 10:\nconsole.log(Math.floor(Math.random() * 10) + 1);\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 60,
+      "question": "Что такое `Math.floor`?",
+      "answer": "Округляет вниз до целого",
+      "explanation": "`Math.floor` возвращает наибольшее целое число, меньшее или равное аргументу. Пример:\n```javascript\nconsole.log(Math.floor(3.7)); // 3\nconsole.log(Math.floor(-3.7)); // -4\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 61,
+      "question": "Что такое `Date` объект?",
+      "answer": "Работа с датами и временем",
+      "explanation": "`Date` представляет дату и время. Пример:\n```javascript\nconst now = new Date();\nconsole.log(now.getFullYear()); // Текущий год\nconsole.log(now.toISOString()); // ISO-формат\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 62,
+      "question": "Как работает `String.prototype.split`?",
+      "answer": "Разделяет строку на массив",
+      "explanation": "`split` разделяет строку по разделителю и возвращает массив подстрок. Пример:\n```javascript\nconst str = 'a,b,c';\nconsole.log(str.split(',')); // ['a', 'b', 'c']\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 63,
+      "question": "Как работает `String.prototype.replace`?",
+      "answer": "Заменяет подстроку",
+      "explanation": "`replace` заменяет первое вхождение подстроки или шаблона. Пример:\n```javascript\nconst str = 'Hello, world!';\nconsole.log(str.replace('world', 'user')); // Hello, user!\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 64,
+      "question": "Что такое регулярные выражения?",
+      "answer": "Шаблоны для поиска в строках",
+      "explanation": "Регулярные выражения используются для поиска и замены в строках. Пример:\n```javascript\nconst str = 'Hello, 2023!';\nconsole.log(str.match(/\\d+/)); // ['2023']\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 65,
+      "question": "Что такое `Function.prototype.apply`?",
+      "answer": "Вызывает функцию с массивом аргументов",
+      "explanation": "`apply` вызывает функцию с указанным `this` и массивом аргументов. Пример:\n```javascript\nfunction sum(a, b) { return a + b; }\nconsole.log(sum.apply(null, [1, 2])); // 3\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 66,
+      "question": "Что такое `Function.prototype.call`?",
+      "answer": "Вызывает функцию с указанным `this`",
+      "explanation": "`call` вызывает функцию с заданным `this` и аргументами. Пример:\n```javascript\nfunction greet() { return `Hello, ${this.name}`; }\nconst obj = { name: 'Alice' };\nconsole.log(greet.call(obj)); // Hello, Alice\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 67,
+      "question": "Что такое `WeakSet`?",
+      "answer": "Коллекция уникальных объектов",
+      "explanation": "`WeakSet` хранит объекты, которые могут быть собраны сборщиком мусора. Пример:\n```javascript\nconst ws = new WeakSet();\nlet obj = {};\nws.add(obj);\nconsole.log(ws.has(obj)); // true\nobj = null; // Объект может быть удален\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 68,
+      "question": "Что такое `Object.freeze`?",
+      "answer": "Запрещает изменение объекта",
+      "explanation": "`Object.freeze` делает объект неизменяемым. Пример:\n```javascript\nconst obj = Object.freeze({ a: 1 });\nobj.a = 2; // Игнорируется в нестрогом режиме\nconsole.log(obj.a); // 1\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 69,
+      "question": "Что такое `Object.seal`?",
+      "answer": "Запрещает добавление/удаление свойств",
+      "explanation": "`Object.seal` позволяет изменять существующие свойства, но не добавлять/удалять. Пример:\n```javascript\nconst obj = Object.seal({ a: 1 });\nobj.a = 2; // OK\nobj.b = 3; // Игнорируется\nconsole.log(obj); // { a: 2 }\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 70,
+      "question": "Что такое `Reflect`?",
+      "answer": "API для работы с объектами",
+      "explanation": "`Reflect` предоставляет методы для операций с объектами. Пример:\n```javascript\nconst obj = { a: 1 };\nconsole.log(Reflect.get(obj, 'a')); // 1\nReflect.set(obj, 'b', 2);\nconsole.log(obj); // { a: 1, b: 2 }\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 71,
+      "question": "Что такое `Array.prototype.includes`?",
+      "answer": "Проверяет наличие элемента",
+      "explanation": "`includes` возвращает `true`, если элемент есть в массиве. Пример:\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.includes(2)); // true\nconsole.log(arr.includes(4)); // false\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 72,
+      "question": "Что такое `String.prototype.includes`?",
+      "answer": "Проверяет наличие подстроки",
+      "explanation": "`includes` возвращает `true`, если подстрока найдена. Пример:\n```javascript\nconst str = 'Hello, world!';\nconsole.log(str.includes('world')); // true\nconsole.log(str.includes('test')); // false\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 73,
+      "question": "Что такое `String.prototype.startsWith`?",
+      "answer": "Проверяет начало строки",
+      "explanation": "`startsWith` возвращает `true`, если строка начинается с подстроки. Пример:\n```javascript\nconst str = 'Hello, world!';\nconsole.log(str.startsWith('Hello')); // true\nconsole.log(str.startsWith('world')); // false\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 74,
+      "question": "Что такое `String.prototype.endsWith`?",
+      "answer": "Проверяет конец строки",
+      "explanation": "`endsWith` возвращает `true`, если строка заканчивается подстрокой. Пример:\n```javascript\nconst str = 'Hello, world!';\nconsole.log(str.endsWith('world!')); // true\nconsole.log(str.endsWith('Hello')); // false\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 75,
+      "question": "Что такое `Array.prototype.at`?",
+      "answer": "Возвращает элемент по индексу",
+      "explanation": "`at` позволяет использовать отрицательные индексы для доступа с конца. Пример:\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.at(1)); // 2\nconsole.log(arr.at(-1)); // 3\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 76,
+      "question": "Что такое `Object.hasOwn`?",
+      "answer": "Проверяет наличие собственного свойства",
+      "explanation": "`Object.hasOwn` проверяет, есть ли у объекта собственное (не унаследованное) свойство. Пример:\n```javascript\nconst obj = { a: 1 };\nconsole.log(Object.hasOwn(obj, 'a')); // true\nconsole.log(Object.hasOwn(obj, 'toString')); // false\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 77,
+      "question": "Что такое `Promise.all`?",
+      "answer": "Ожидает выполнения всех Promise",
+      "explanation": "`Promise.all` возвращает Promise, который разрешается, когда все переданные Promise разрешены. Пример:\n```javascript\nconst p1 = Promise.resolve(1);\nconst p2 = Promise.resolve(2);\nPromise.all([p1, p2]).then(values => console.log(values)); // [1, 2]\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 78,
+      "question": "Что такое `Promise.race`?",
+      "answer": "Возвращает первый завершенный Promise",
+      "explanation": "`Promise.race` возвращает первый разрешенный или отклоненный Promise. Пример:\n```javascript\nconst p1 = new Promise(resolve => setTimeout(resolve, 100, 'one'));\nconst p2 = new Promise(resolve => setTimeout(resolve, 50, 'two'));\nPromise.race([p1, p2]).then(value => console.log(value)); // two\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 79,
+      "question": "Что такое `Promise.any`?",
+      "answer": "Возвращает первый успешный Promise",
+      "explanation": "`Promise.any` возвращает первый разрешенный Promise, игнорируя отклоненные. Пример:\n```javascript\nconst p1 = Promise.reject('Error');\nconst p2 = Promise.resolve('Success');\nPromise.any([p1, p2]).then(value => console.log(value)); // Success\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 80,
+      "question": "Что такое `Promise.allSettled`?",
+      "answer": "Ожидает завершения всех Promise",
+      "explanation": "`Promise.allSettled` возвращает массив статусов всех Promise. Пример:\n```javascript\nconst p1 = Promise.resolve(1);\nconst p2 = Promise.reject('Error');\nPromise.allSettled([p1, p2]).then(results => console.log(results));\n// [{status: 'fulfilled', value: 1}, {status: 'rejected', reason: 'Error'}]\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 81,
+      "question": "Что такое `Number.isNaN`?",
+      "answer": "Проверяет, является ли значение NaN",
+      "explanation": "`Number.isNaN` возвращает `true` только для `NaN`. Пример:\n```javascript\nconsole.log(Number.isNaN(NaN)); // true\nconsole.log(Number.isNaN('text')); // false\nconsole.log(Number.isNaN(42)); // false\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 82,
+      "question": "Что такое `Number.isFinite`?",
+      "answer": "Проверяет, является ли значение конечным числом",
+      "explanation": "`Number.isFinite` возвращает `true` для конечных чисел. Пример:\n```javascript\nconsole.log(Number.isFinite(42)); // true\nconsole.log(Number.isFinite(Infinity)); // false\nconsole.log(Number.isFinite('42')); // false\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 83,
+      "question": "Что такое `Array.prototype.flat`?",
+      "answer": "Разворачивает вложенные массивы",
+      "explanation": "`flat` создает новый массив, разворачивая вложенные массивы до указанной глубины. Пример:\n```javascript\nconst arr = [1, [2, [3, 4]]];\nconsole.log(arr.flat(1)); // [1, 2, [3, 4]]\nconsole.log(arr.flat(2)); // [1, 2, 3, 4]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 84,
+      "question": "Что такое `Array.prototype.flatMap`?",
+      "answer": "Маппинг с разворачиванием",
+      "explanation": "`flatMap` применяет функцию и разворачивает результат на один уровень. Пример:\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.flatMap(x => [x, x * 2])); // [1, 2, 2, 4, 3, 6]\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 85,
+      "question": "Что такое `Object.fromEntries`?",
+      "answer": "Создает объект из пар [ключ, значение]",
+      "explanation": "`Object.fromEntries` преобразует массив пар в объект. Пример:\n```javascript\nconst entries = [['a', 1], ['b', 2]];\nconsole.log(Object.fromEntries(entries)); // { a: 1, b: 2 }\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 86,
+      "question": "Что такое `String.prototype.trim`?",
+      "answer": "Удаляет пробелы с краев строки",
+      "explanation": "`trim` удаляет пробелы с начала и конца строки. Пример:\n```javascript\nconst str = '  hello  ';\nconsole.log(str.trim()); // hello\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 87,
+      "question": "Что такое `String.prototype.padStart`?",
+      "answer": "Добавляет символы в начало строки",
+      "explanation": "`padStart` дополняет строку до указанной длины символами в начале. Пример:\n```javascript\nconst str = '5';\nconsole.log(str.padStart(3, '0')); // 005\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 88,
+      "question": "Что такое `String.prototype.padEnd`?",
+      "answer": "Добавляет символы в конец строки",
+      "explanation": "`padEnd` дополняет строку до указанной длины символами в конце. Пример:\n```javascript\nconst str = '5';\nconsole.log(str.padEnd(3, '0')); // 500\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 89,
+      "question": "Что такое `Array.prototype.indexOf`?",
+      "answer": "Возвращает индекс первого вхождения",
+      "explanation": "`indexOf` возвращает индекс первого найденного элемента или -1. Пример:\n```javascript\nconst arr = [1, 2, 3, 2];\nconsole.log(arr.indexOf(2)); // 1\nconsole.log(arr.indexOf(4)); // -1\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 90,
+      "question": "Что такое `Array.prototype.lastIndexOf`?",
+      "answer": "Возвращает индекс последнего вхождения",
+      "explanation": "`lastIndexOf` возвращает индекс последнего найденного элемента или -1. Пример:\n```javascript\nconst arr = [1, 2, 3, 2];\nconsole.log(arr.lastIndexOf(2)); // 3\nconsole.log(arr.lastIndexOf(4)); // -1\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 91,
+      "question": "Что такое `Math.max`?",
+      "answer": "Возвращает максимальное значение",
+      "explanation": "`Math.max` возвращает наибольшее число из аргументов. Пример:\n```javascript\nconsole.log(Math.max(1, 5, 3)); // 5\nconsole.log(Math.max(...[1, 5, 3])); // 5\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 92,
+      "question": "Что такое `Math.min`?",
+      "answer": "Возвращает минимальное значение",
+      "explanation": "`Math.min` возвращает наименьшее число из аргументов. Пример:\n```javascript\nconsole.log(Math.min(1, 5, 3)); // 1\nconsole.log(Math.min(...[1, 5, 3])); // 1\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 93,
+      "question": "Что такое `Number.parseInt`?",
+      "answer": "Преобразует строку в целое число",
+      "explanation": "`Number.parseInt` извлекает целое число из строки с указанием системы счисления. Пример:\n```javascript\nconsole.log(Number.parseInt('123')); // 123\nconsole.log(Number.parseInt('101', 2)); // 5\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 94,
+      "question": "Что такое `Number.parseFloat`?",
+      "answer": "Преобразует строку в число с плавающей точкой",
+      "explanation": "`Number.parseFloat` извлекает число с плавающей точкой из строки. Пример:\n```javascript\nconsole.log(Number.parseFloat('12.34')); // 12.34\nconsole.log(Number.parseFloat('12.34abc')); // 12.34\n```",
+      "difficulty": "medium",
+      "topic": "javascript"
+    },
+    {
+      "id": 95,
+      "question": "Что такое `Array.prototype.push`?",
+      "answer": "Добавляет элементы в конец массива",
+      "explanation": "`push` добавляет элементы в конец массива и возвращает новую длину. Пример:\n```javascript\nconst arr = [1, 2];\narr.push(3, 4);\nconsole.log(arr); // [1, 2, 3, 4]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 96,
+      "question": "Что такое `Array.prototype.pop`?",
+      "answer": "Удаляет последний элемент массива",
+      "explanation": "`pop` удаляет и возвращает последний элемент массива. Пример:\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.pop()); // 3\nconsole.log(arr); // [1, 2]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 97,
+      "question": "Что такое `Array.prototype.shift`?",
+      "answer": "Удаляет первый элемент массива",
+      "explanation": "`shift` удаляет и возвращает первый элемент массива. Пример:\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.shift()); // 1\nconsole.log(arr); // [2, 3]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 98,
+      "question": "Что такое `Array.prototype.unshift`?",
+      "answer": "Добавляет элементы в начало массива",
+      "explanation": "`unshift` добавляет элементы в начало массива и возвращает новую длину. Пример:\n```javascript\nconst arr = [2, 3];\narr.unshift(1);\nconsole.log(arr); // [1, 2, 3]\n```",
+      "difficulty": "easy",
+      "topic": "javascript"
+    },
+    {
+      "id": 99,
+      "question": "Что такое асинхронные генераторы?",
+      "answer": "Генераторы с асинхронными значениями",
+      "explanation": "Асинхронные генераторы используют `async function*` и `yield` для возврата Promise. Пример:\\n```javascript\\nasync function* asyncGenerator() {\\n  yield Promise.resolve(1);\\n  yield Promise.resolve(2);\\n}\\nconst gen = asyncGenerator();\\ngen.next().then(({ value }) => console.log(value)); // 1\\ngen.next().then(({ value }) => console.log(value)); // 2\\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    },
+    {
+      "id": 100,
+      "question": "Что такое `globalThis`?",
+      "answer": "Универсальная ссылка на глобальный объект",
+      "explanation": "`globalThis` предоставляет доступ к глобальному объекту в любом окружении. Пример:\n```javascript\nconsole.log(globalThis === window); // true в браузере\nconsole.log(globalThis.setTimeout === setTimeout); // true\n```",
+      "difficulty": "hard",
+      "topic": "javascript"
+    }
+  ]
+

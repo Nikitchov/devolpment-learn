@@ -1,0 +1,590 @@
+[
+    {
+      "id": 1,
+      "title": "Сумма массива",
+      "description": "Напишите функцию, которая возвращает сумму всех чисел в массиве.",
+      "difficulty": "easy",
+      "solution": "function sumArray(arr) { return arr.reduce((sum, num) => sum + num, 0); }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": 6 },
+        { "input": [[-1, 1]], "output": 0 },
+        { "input": [[]], "output": 0 }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Обратный массив",
+      "description": "Напишите функцию, которая переворачивает массив без использования метода reverse().",
+      "difficulty": "easy",
+      "solution": "function reverseArray(arr) { let result = []; for (let i = arr.length - 1; i >= 0; i--) result.push(arr[i]); return result; }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": [3, 2, 1] },
+        { "input": [['a', 'b']], "output": ['b', 'a'] },
+        { "input": [[]], "output": [] }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Удаление дубликатов",
+      "description": "Напишите функцию, которая удаляет дубликаты из массива.",
+      "difficulty": "medium",
+      "solution": "function removeDuplicates(arr) { return [...new Set(arr)]; }",
+      "testCases": [
+        { "input": [[1, 2, 2, 3]], "output": [1, 2, 3] },
+        { "input": [['a', 'a', 'b']], "output": ['a', 'b'] },
+        { "input": [[]], "output": [] }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Палиндром",
+      "description": "Напишите функцию, которая проверяет, является ли строка палиндромом.",
+      "difficulty": "easy",
+      "solution": "function isPalindrome(str) { str = str.toLowerCase().replace(/[^a-z0-9]/g, ''); return str === str.split('').reverse().join(''); }",
+      "testCases": [
+        { "input": ['racecar'], "output": true },
+        { "input": ['hello'], "output": false },
+        { "input": ['A man, a plan, a canal: Panama'], "output": true }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Факториал",
+      "description": "Напишите функцию, которая вычисляет факториал числа.",
+      "difficulty": "easy",
+      "solution": "function factorial(n) { if (n <= 1) return 1; return n * factorial(n - 1); }",
+      "testCases": [
+        { "input": [5], "output": 120 },
+        { "input": [0], "output": 1 },
+        { "input": [3], "output": 6 }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Фибоначчи",
+      "description": "Напишите функцию, которая возвращает n-е число Фибоначчи.",
+      "difficulty": "medium",
+      "solution": "function fibonacci(n) { if (n <= 1) return n; let a = 0, b = 1; for (let i = 2; i <= n; i++) { let temp = a + b; a = b; b = temp; } return b; }",
+      "testCases": [
+        { "input": [6], "output": 8 },
+        { "input": [0], "output": 0 },
+        { "input": [1], "output": 1 }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Анаграмма",
+      "description": "Напишите функцию, которая проверяет, являются ли две строки анаграммами.",
+      "difficulty": "medium",
+      "solution": "function isAnagram(s1, s2) { const normalize = str => str.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join(''); return normalize(s1) === normalize(s2); }",
+      "testCases": [
+        { "input": ['listen', 'silent'], "output": true },
+        { "input": ['hello', 'world'], "output": false },
+        { "input": ['Rail safety', 'fairy tales'], "output": true }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Максимальное число",
+      "description": "Напишите функцию, которая находит максимальное число в массиве.",
+      "difficulty": "easy",
+      "solution": "function maxNumber(arr) { return Math.max(...arr); }",
+      "testCases": [
+        { "input": [[1, 5, 3]], "output": 5 },
+        { "input": [[-1, -5]], "output": -1 },
+        { "input": [[10]], "output": 10 }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Слияние массивов",
+      "description": "Напишите функцию, которая объединяет два отсортированных массива в один отсортированный.",
+      "difficulty": "medium",
+      "solution": "function mergeSortedArrays(arr1, arr2) { let result = [], i = 0, j = 0; while (i < arr1.length && j < arr2.length) { if (arr1[i] <= arr2[j]) result.push(arr1[i++]); else result.push(arr2[j++]); } return [...result, ...arr1.slice(i), ...arr2.slice(j)]; }",
+      "testCases": [
+        { "input": [[1, 3], [2, 4]], "output": [1, 2, 3, 4] },
+        { "input": [[], [1]], "output": [1] },
+        { "input": [[1, 2], []], "output": [1, 2] }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Замыкание счетчика",
+      "description": "Создайте функцию, которая возвращает счетчик с помощью замыкания. Каждый вызов увеличивает счетчик на 1.",
+      "difficulty": "hard",
+      "solution": "function createCounter() { let count = 0; return function() { return ++count; }; }",
+      "testCases": [
+        { "input": [], "output": undefined },
+        { "input": [], "output": undefined }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Подсчет символов",
+      "description": "Напишите функцию, которая возвращает объект с количеством каждого символа в строке.",
+      "difficulty": "medium",
+      "solution": "function charCount(str) { return str.toLowerCase().split('').reduce((acc, char) => { acc[char] = (acc[char] || 0) + 1; return acc; }, {}); }",
+      "testCases": [
+        { "input": ['hello'], "output": { h: 1, e: 1, l: 2, o: 1 } },
+        { "input": ['aaa'], "output": { a: 3 } },
+        { "input": [''], "output": {} }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Фильтрация четных чисел",
+      "description": "Напишите функцию, которая возвращает массив только с четными числами.",
+      "difficulty": "easy",
+      "solution": "function filterEven(arr) { return arr.filter(num => num % 2 === 0); }",
+      "testCases": [
+        { "input": [[1, 2, 3, 4]], "output": [2, 4] },
+        { "input": [[1, 3]], "output": [] },
+        { "input": [[2, 4]], "output": [2, 4] }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Капитализация слов",
+      "description": "Напишите функцию, которая делает заглавной первую букву каждого слова в строке.",
+      "difficulty": "medium",
+      "solution": "function capitalizeWords(str) { return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); }",
+      "testCases": [
+        { "input": ['hello world'], "output": 'Hello World' },
+        { "input": ['test'], "output": 'Test' },
+        { "input": [''], "output": '' }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Сумма квадратов",
+      "description": "Напишите функцию, которая возвращает сумму квадратов чисел в массиве.",
+      "difficulty": "easy",
+      "solution": "function sumSquares(arr) { return arr.reduce((sum, num) => sum + num * num, 0); }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": 14 },
+        { "input": [[0]], "output": 0 },
+        { "input": [[-2]], "output": 4 }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Поиск пропущенного числа",
+      "description": "Напишите функцию, которая находит пропущенное число в массиве от 1 до n.",
+      "difficulty": "medium",
+      "solution": "function findMissing(arr) { const n = arr.length + 1; const expectedSum = (n * (n + 1)) / 2; const actualSum = arr.reduce((sum, num) => sum + num, 0); return expectedSum - actualSum; }",
+      "testCases": [
+        { "input": [[1, 2, 4, 5]], "output": 3 },
+        { "input": [[2, 3, 4]], "output": 1 },
+        { "input": [[1, 2, 3]], "output": 4 }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Объединение объектов",
+      "description": "Напишите функцию, которая объединяет два объекта, сохраняя уникальные ключи.",
+      "difficulty": "medium",
+      "solution": "function mergeObjects(obj1, obj2) { return { ...obj1, ...obj2 }; }",
+      "testCases": [
+        { "input": [{ a: 1 }, { b: 2 }], "output": { a: 1, b: 2 } },
+        { "input": [{ a: 1 }, { a: 2 }], "output": { a: 2 } },
+        { "input": [{}, {}], "output": {} }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Реверс строки",
+      "description": "Напишите функцию, которая переворачивает строку без использования reverse().",
+      "difficulty": "easy",
+      "solution": "function reverseString(str) { let result = ''; for (let i = str.length - 1; i >= 0; i--) result += str[i]; return result; }",
+      "testCases": [
+        { "input": ['hello'], "output": 'olleh' },
+        { "input": ['test'], "output": 'tset' },
+        { "input": [''], "output": '' }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Группировка по свойству",
+      "description": "Напишите функцию, которая группирует объекты в массиве по указанному свойству.",
+      "difficulty": "hard",
+      "solution": "function groupBy(arr, prop) { return arr.reduce((acc, obj) => { const key = obj[prop]; acc[key] = acc[key] || []; acc[key].push(obj); return acc; }, {}); }",
+      "testCases": [
+        { "input": [[{ id: 1, type: 'a' }, { id: 2, type: 'b' }, { id: 3, type: 'a' }], 'type'], "output": { a: [{ id: 1, type: 'a' }, { id: 3, type: 'a' }], b: [{ id: 2, type: 'b' }] } },
+        { "input": [[], 'type'], "output": {} }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Дебounce",
+      "description": "Реализуйте функцию debounce, которая ограничивает частоту вызова другой функции.",
+      "difficulty": "hard",
+      "solution": "function debounce(fn, ms) { let timeout; return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => fn(...args), ms); }; }",
+      "testCases": [
+        { "input": [], "output": undefined }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Промисы: последовательное выполнение",
+      "description": "Напишите функцию, которая выполняет массив промисов последовательно и возвращает результаты.",
+      "difficulty": "hard",
+      "solution": "async function sequentialPromises(promises) { const results = []; for (const promise of promises) { results.push(await promise); } return results; }",
+      "testCases": [
+        { "input": [], "output": undefined }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Сортировка по длине",
+      "description": "Напишите функцию, которая сортирует массив строк по длине.",
+      "difficulty": "medium",
+      "solution": "function sortByLength(arr) { return arr.sort((a, b) => a.length - b.length); }",
+      "testCases": [
+        { "input": [['abc', 'a', 'abcd']], "output": ['a', 'abc', 'abcd'] },
+        { "input": [['test', 't']], "output": ['t', 'test'] },
+        { "input": [[]], "output": [] }
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Поиск подстроки",
+      "description": "Напишите функцию, которая проверяет, содержит ли строка подстроку.",
+      "difficulty": "easy",
+      "solution": "function containsSubstring(str, substr) { return str.includes(substr); }",
+      "testCases": [
+        { "input": ['hello world', 'world'], "output": true },
+        { "input": ['hello', 'hi'], "output": false },
+        { "input": ['', 'test'], "output": false }
+      ]
+    },
+    {
+      "id": 23,
+      "title": "Каррирование",
+      "description": "Реализуйте функцию каррирования для функции с тремя аргументами.",
+      "difficulty": "hard",
+      "solution": "function curry(fn) { return function(a) { return function(b) { return function(c) { return fn(a, b, c); }; }; }; }",
+      "testCases": [
+        { "input": [], "output": undefined }
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Четные индексы",
+      "description": "Напишите функцию, которая возвращает элементы массива на четных индексах.",
+      "difficulty": "easy",
+      "solution": "function evenIndices(arr) { return arr.filter((_, i) => i % 2 === 0); }",
+      "testCases": [
+        { "input": [[1, 2, 3, 4]], "output": [1, 3] },
+        { "input": [[1]], "output": [1] },
+        { "input": [[]], "output": [] }
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Сумма объектов",
+      "description": "Напишите функцию, которая суммирует значения свойства в массиве объектов.",
+      "difficulty": "medium",
+      "solution": "function sumProperty(arr, prop) { return arr.reduce((sum, obj) => sum + obj[prop], 0); }",
+      "testCases": [
+        { "input": [[{ value: 1 }, { value: 2 }], 'value'], "output": 3 },
+        { "input": [[], 'value'], "output": 0 },
+        { "input": [[{ value: 0 }], 'value'], "output": 0 }
+      ]
+    },
+    {
+      "id": 26,
+      "title": "Удаление пробелов",
+      "description": "Напишите функцию, которая удаляет все пробелы из строки.",
+      "difficulty": "easy",
+      "solution": "function removeSpaces(str) { return str.replace(/\s/g, ''); }",
+      "testCases": [
+        { "input": ['hello world'], "output": 'helloworld' },
+        { "input": ['  test  '], "output": 'test' },
+        { "input": [''], "output": '' }
+      ]
+    },
+    {
+      "id": 27,
+      "title": "Проверка объекта",
+      "description": "Напишите функцию, которая проверяет, является ли значение объектом.",
+      "difficulty": "easy",
+      "solution": "function isObject(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }",
+      "testCases": [
+        { "input": [{ a: 1 }], "output": true },
+        { "input": [[1, 2]], "output": false },
+        { "input": [null], "output": false }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "Мемоизация",
+      "description": "Реализуйте функцию мемоизации для кэширования результатов.",
+      "difficulty": "hard",
+      "solution": "function memoize(fn) { const cache = {}; return function(...args) { const key = JSON.stringify(args); if (key in cache) return cache[key]; return cache[key] = fn(...args); }; }",
+      "testCases": [
+        { "input": [], "output": undefined }
+      ]
+    },
+    {
+      "id": 29,
+      "title": "Пересечение массивов",
+      "description": "Напишите функцию, которая возвращает пересечение двух массивов.",
+      "difficulty": "medium",
+      "solution": "function intersection(arr1, arr2) { const set = new Set(arr2); return arr1.filter(item => set.has(item)); }",
+      "testCases": [
+        { "input": [[1, 2, 3], [2, 3, 4]], "output": [2, 3] },
+        { "input": [[1], [2]], "output": [] },
+        { "input": [[], []], "output": [] }
+      ]
+    },
+    {
+      "id": 30,
+      "title": "Сжатие строки",
+      "description": "Напишите функцию, которая сжимает строку, заменяя повторяющиеся символы на их количество (например, 'aaabb' -> 'a3b2').",
+      "difficulty": "medium",
+      "solution": "function compressString(str) { let result = ''; let count = 1; for (let i = 0; i < str.length; i++) { if (str[i] === str[i + 1]) count++; else { result += str[i] + count; count = 1; } } return result; }",
+      "testCases": [
+        { "input": ['aaabb'], "output": 'a3b2' },
+        { "input": ['a'], "output": 'a1' },
+        { "input": ['abc'], "output": 'a1b1c1' }
+      ]
+    },
+    {
+      "id": 31,
+      "title": "Глубокое копирование",
+      "description": "Напишите функцию, которая создает глубокую копию объекта.",
+      "difficulty": "hard",
+      "solution": "function deepCopy(obj) { if (obj === null || typeof obj !== 'object') return obj; const copy = Array.isArray(obj) ? [] : {}; for (const key in obj) copy[key] = deepCopy(obj[key]); return copy; }",
+      "testCases": [
+        { "input": [{ a: { b: 1 } }], "output": { a: { b: 1 } } },
+        { "input": [[1, [2]]], "output": [1, [2]] },
+        { "input": [null], "output": null }
+      ]
+    },
+    {
+      "id": 32,
+      "title": "Поиск пары",
+      "description": "Напишите функцию, которая находит пару чисел в массиве, сумма которых равна заданному числу.",
+      "difficulty": "medium",
+      "solution": "function findPair(arr, target) { const set = new Set(); for (const num of arr) { if (set.has(target - num)) return [target - num, num]; set.add(num); } return null; }",
+      "testCases": [
+        { "input": [[1, 2, 3, 4], 7], "output": [3, 4] },
+        { "input": [[1, 2], 5], "output": null },
+        { "input": [[2, 2], 4], "output": [2, 2] }
+      ]
+    },
+    {
+      "id": 33,
+      "title": "Подсчет слов",
+      "description": "Напишите функцию, которая подсчитывает количество слов в строке.",
+      "difficulty": "easy",
+      "solution": "function wordCount(str) { return str.trim().split(/\\s+/).length; }",
+      "testCases": [
+        { "input": ['hello world'], "output": 2 },
+        { "input": ['test'], "output": 1 },
+        { "input": ['  '], "output": 0 }
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Плоский массив",
+      "description": "Напишите функцию, которая делает плоским вложенный массив.",
+      "difficulty": "medium",
+      "solution": "function flattenArray(arr) { return arr.flat(Infinity); }",
+      "testCases": [
+        { "input": [[1, [2, [3]]]], "output": [1, 2, 3] },
+        { "input": [[1, 2]], "output": [1, 2] },
+        { "input": [[]], "output": [] }
+      ]
+    },
+    {
+      "id": 35,
+      "title": "Число в слова",
+      "description": "Напишите функцию, которая преобразует число от 0 до 9 в слово.",
+      "difficulty": "easy",
+      "solution": "function numberToWord(num) { const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']; return words[num]; }",
+      "testCases": [
+        { "input": [0], "output": 'zero' },
+        { "input": [5], "output": 'five' },
+        { "input": [9], "output": 'nine' }
+      ]
+    },
+    {
+      "id": 36,
+      "title": "Проверка простого числа",
+      "description": "Напишите функцию, которая проверяет, является ли число простым.",
+      "difficulty": "medium",
+      "solution": "function isPrime(num) { if (num < 2) return false; for (let i = 2; i <= Math.sqrt(num); i++) if (num % i === 0) return false; return true; }",
+      "testCases": [
+        { "input": [7], "output": true },
+        { "input": [4], "output": false },
+        { "input": [1], "output": false }
+      ]
+    },
+    {
+      "id": 37,
+      "title": "Случайный элемент",
+      "description": "Напишите функцию, которая возвращает случайный элемент из массива.",
+      "difficulty": "easy",
+      "solution": "function randomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": undefined },
+        { "input": [['a', 'b']], "output": undefined }
+      ]
+    },
+    {
+      "id": 38,
+      "title": "Частота элементов",
+      "description": "Напишите функцию, которая возвращает объект с частотой элементов в массиве.",
+      "difficulty": "medium",
+      "solution": "function frequency(arr) { return arr.reduce((acc, item) => { acc[item] = (acc[item] || 0) + 1; return acc; }, {}); }",
+      "testCases": [
+        { "input": [[1, 1, 2]], "output": { 1: 2, 2: 1 } },
+        { "input": [['a', 'a']], "output": { a: 2 } },
+        { "input": [[]], "output": {} }
+      ]
+    },
+    {
+      "id": 39,
+      "title": "Обратный порядок слов",
+      "description": "Напишите функцию, которая переворачивает порядок слов в строке.",
+      "difficulty": "medium",
+      "solution": "function reverseWords(str) { return str.split(' ').reverse().join(' '); }",
+      "testCases": [
+        { "input": ['hello world'], "output": 'world hello' },
+        { "input": ['test'], "output": 'test' },
+        { "input": [''], "output": '' }
+      ]
+    },
+    {
+      "id": 40,
+      "title": "Сумма диапазона",
+      "description": "Напишите функцию, которая возвращает сумму чисел в заданном диапазоне.",
+      "difficulty": "easy",
+      "solution": "function rangeSum(start, end) { return ((end - start + 1) * (start + end)) / 2; }",
+      "testCases": [
+        { "input": [1, 3], "output": 6 },
+        { "input": [2, 4], "output": 9 },
+        { "input": [1, 1], "output": 1 }
+      ]
+    },
+    {
+      "id": 41,
+      "title": "Проверка сбалансированных скобок",
+      "description": "Напишите функцию, которая проверяет, сбалансированы ли скобки в строке.",
+      "difficulty": "hard",
+      "solution": "function isBalanced(str) { const stack = []; for (const char of str) { if (char === '(') stack.push(char); else if (char === ')') { if (!stack.pop()) return false; } } return stack.length === 0; }",
+      "testCases": [
+        { "input": ['()'], "output": true },
+        { "input": ['(()'], "output": false },
+        { "input": ['(())'], "output": true }
+      ]
+    },
+    {
+      "id": 42,
+      "title": "Удаление элемента",
+      "description": "Напишите функцию, которая удаляет все вхождения элемента из массива.",
+      "difficulty": "easy",
+      "solution": "function removeElement(arr, value) { return arr.filter(item => item !== value); }",
+      "testCases": [
+        { "input": [[1, 2, 2, 3], 2], "output": [1, 3] },
+        { "input": [[1], 2], "output": [1] },
+        { "input": [[], 1], "output": [] }
+      ]
+    },
+    {
+      "id": 43,
+      "title": "Проверка уникальности",
+      "description": "Напишите функцию, которая проверяет, все ли элементы в массиве уникальны.",
+      "difficulty": "medium",
+      "solution": "function areUnique(arr) { return new Set(arr).size === arr.length; }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": true },
+        { "input": [[1, 1]], "output": false },
+        { "input": [[]], "output": true }
+      ]
+    },
+    {
+      "id": 44,
+      "title": "Поворот массива",
+      "description": "Напишите функцию, которая поворачивает массив на k позиций вправо.",
+      "difficulty": "hard",
+      "solution": "function rotateArray(arr, k) { k = k % arr.length; return [...arr.slice(-k), ...arr.slice(0, -k)]; }",
+      "testCases": [
+        { "input": [[1, 2, 3, 4], 1], "output": [4, 1, 2, 3] },
+        { "input": [[1, 2], 2], "output": [1, 2] },
+        { "input": [[], 1], "output": [] }
+      ]
+    },
+    {
+      "id": 45,
+      "title": "Форматирование числа",
+      "description": "Напишите функцию, которая форматирует число с разделителями тысяч.",
+      "difficulty": "medium",
+      "solution": "function formatNumber(num) { return num.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ','); }",
+      "testCases": [
+        { "input": [1000], "output": '1,000' },
+        { "input": [1234567], "output": '1,234,567' },
+        { "input": [0], "output": '0' }
+      ]
+    },
+    {
+      "id": 46,
+      "title": "Поиск второго максимума",
+      "description": "Напишите функцию, которая находит второй по величине элемент в массиве.",
+      "difficulty": "medium",
+      "solution": "function secondMax(arr) { let max = -Infinity, second = -Infinity; for (const num of arr) { if (num > max) { second = max; max = num; } else if (num > second && num < max) second = num; } return second; }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": 2 },
+        { "input": [[5, 5, 4]], "output": 4 },
+        { "input": [[1]], "output": -Infinity }
+      ]
+    },
+    {
+      "id": 47,
+      "title": "Проверка подмассива",
+      "description": "Напишите функцию, которая проверяет, является ли массив подмассивом другого массива.",
+      "difficulty": "medium",
+      "solution": "function isSubarray(arr, sub) { return arr.join(',').includes(sub.join(',')); }",
+      "testCases": [
+        { "input": [[1, 2, 3, 4], [2, 3]], "output": true },
+        { "input": [[1, 2], [3]], "output": false },
+        { "input": [[], []], "output": true }
+      ]
+    },
+    {
+      "id": 48,
+      "title": "Случайная перестановка",
+      "description": "Напишите функцию, которая случайным образом перемешивает массив (Fisher-Yates).",
+      "difficulty": "hard",
+      "solution": "function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }",
+      "testCases": [
+        { "input": [[1, 2, 3]], "output": undefined },
+        { "input": [[]], "output": [] }
+      ]
+    },
+    {
+      "id": 49,
+      "title": "Подсчет гласных",
+      "description": "Напишите функцию, которая подсчитывает количество гласных в строке.",
+      "difficulty": "easy",
+      "solution": "function countVowels(str) { return str.toLowerCase().match(/[aeiou]/g)?.length || 0; }",
+      "testCases": [
+        { "input": ['hello'], "output": 2 },
+        { "input": ['sky'], "output": 0 },
+        { "input": [''], "output": 0 }
+      ]
+    },
+    {
+      "id": 50,
+      "title": "Проверка JSON",
+      "description": "Напишите функцию, которая проверяет, является ли строка валидным JSON.",
+      "difficulty": "medium",
+      "solution": "function isValidJSON(str) { try { JSON.parse(str); return true; } catch { return false; } }",
+      "testCases": [
+        { "input": ["{\"a\": 1}"], "output": true },
+        { "input": ["{a: 1}"], "output": false },
+        { "input": ["[]"], "output": true }
+      ]
+    }
+  ]

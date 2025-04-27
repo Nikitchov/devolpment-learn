@@ -1,0 +1,157 @@
+[
+    {
+      "topic": "React",
+      "basics": {
+        "title": "Основы React",
+        "content": "React — JavaScript-библиотека для создания UI на основе компонентов. Ключевые концепции:\n- **Компоненты**: Функциональные или классовые блоки UI.\n- **JSX**: HTML-подобный синтаксис в JavaScript.\n- **Пропсы**: Передача данных в компоненты.\n- **Состояние**: Управление данными с `useState` (функциональные) или `this.state` (классовые).",
+        "codeExample": {
+          "description": "Функциональный компонент с состоянием:",
+          "code": "function Counter({ initialCount }) {\n  const [count, setCount] = React.useState(initialCount);\n  return (\n    <div>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(count + 1)}>Increment</button>\n    </div>\n  );\n}"
+        }
+      },
+      "advanced": {
+        "title": "Продвинутые темы в React",
+        "content": "- **Хуки**: `useEffect`, `useContext`, кастомные хуки для логики.\n- **Классовые компоненты**: Использование `this.state`, жизненные циклы (`componentDidMount`).\n- **Оптимизация**: `React.memo`, `useCallback`, `useMemo` для предотвращения рендеров.\n- **Подходы**:\n  - **Компонентный**: Разделение UI на независимые компоненты.\n  - **Контейнер-презентация**: Логика в контейнерах, UI в презентационных компонентах.",
+        "codeExample": {
+          "description": "Классовый компонент и кастомный хук:",
+          "code": "class Clock extends React.Component {\n  state = { time: new Date().toLocaleTimeString() };\n  componentDidMount() {\n    this.timer = setInterval(() => this.setState({ time: new Date().toLocaleTimeString() }), 1000);\n  }\n  componentWillUnmount() {\n    clearInterval(this.timer);\n  }\n  render() {\n    return <div>Time: {this.state.time}</div>;\n  }\n}\n\nfunction useWindowSize() {\n  const [size, setSize] = React.useState({ width: window.innerWidth, height: window.innerHeight });\n  React.useEffect(() => {\n    const handleResize = () => setSize({ width: window.innerWidth, height: window.innerHeight });\n    window.addEventListener('resize', handleResize);\n    return () => window.removeEventListener('resize', handleResize);\n  }, []);\n  return size;\n}"
+        }
+      },
+      "quiz": [
+        { "question": "JSX компилируется в JavaScript?", "answer": true },
+        { "question": "`useEffect` заменяет все методы жизненного цикла?", "answer": false },
+        { "question": "`React.memo` оптимизирует функциональные компоненты?", "answer": true },
+        { "question": "Классовые компоненты устарели?", "answer": false }
+      ],
+      "tasks": [
+        "Создать таймер с `useState` и `useEffect`.",
+        "Реализовать классовый компонент с `componentDidUpdate`.",
+        "Создать кастомный хук для управления формой.",
+        "Разделить приложение на контейнер и презентационный компонент."
+      ]
+    },
+    {
+      "topic": "HTML",
+      "basics": {
+        "title": "Основы HTML",
+        "content": "HTML — язык разметки для структуры веб-страниц. Основы:\n- **Теги**: `div`, `p`, `a` формируют структуру.\n- **Атрибуты**: `img src=\"...\" alt=\"...\"` добавляют функциональность.\n- **Семантика**: `header`, `main`, `footer` для доступности и SEO.\n- **Формы**: `form`, `input` для ввода данных.",
+        "codeExample": {
+          "description": "Семантическая разметка страницы:",
+          "code": "<header>\n  <h1>Мой сайт</h1>\n  <nav>\n    <a href=\"/home\">Главная</a>\n  </nav>\n</header>\n<main>\n  <section>\n    <h2>Контент</h2>\n    <p>Описание...</p>\n  </section>\n</main>"
+        }
+      },
+      "advanced": {
+        "title": "Продвинутые темы в HTML",
+        "content": "- **ARIA**: Атрибуты для доступности (например, `aria-label`, `aria-hidden`).\n- **HTML5 API**: `canvas`, `video`, Web Storage, Geolocation.\n- **Микроданные**: Schema.org для SEO.\n- **Web Components**: Кастомные элементы с Shadow DOM.",
+        "codeExample": {
+          "description": "Форма с ARIA и Canvas:",
+          "code": "<form aria-labelledby=\"form-title\">\n  <h2 id=\"form-title\">Контакты</h2>\n  <input id=\"email\" type=\"email\" aria-required=\"true\" />\n</form>\n<canvas id=\"myCanvas\" width=\"200\" height=\"100\"></canvas>\n<script>\n  const ctx = document.getElementById('myCanvas').getContext('2d');\n  ctx.fillStyle = 'blue';\n  ctx.fillRect(10, 10, 50, 50);\n</script>"
+        }
+      },
+      "quiz": [
+        { "question": "`<main>` используется один раз на странице?", "answer": true },
+        { "question": "`alt` обязателен для `<img>`?", "answer": true },
+        { "question": "Shadow DOM изолирует стили?", "answer": true },
+        { "question": "HTML5 API включает WebSockets?", "answer": true }
+      ],
+      "tasks": [
+        "Создать семантическую разметку портфолио.",
+        "Добавить ARIA к форме авторизации.",
+        "Реализовать анимацию на `<canvas>`.",
+        "Создать кастомный Web Component."
+      ]
+    },
+    {
+      "topic": "CSS",
+      "basics": {
+        "title": "Основы CSS",
+        "content": "CSS стилизует веб-страницы. Основы:\n- **Селекторы**: `.class`, `#id`, `[attribute]`.\n- **Свойства**: `color`, `font-size`, `padding`.\n- **Блочная модель**: Контент, padding, border, margin.\n- **Позиционирование**: `relative`, `absolute`, `fixed`.",
+        "codeExample": {
+          "description": "Стилизация кнопки:",
+          "code": ".button {\n  background-color: #007bff;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.button:hover {\n  background-color: #0056b3;\n}"
+        }
+      },
+      "advanced": {
+        "title": "Продвинутые темы в CSS",
+        "content": "- **Flexbox и Grid**: Раскладки для адаптивного дизайна.\n- **Анимации**: `transition`, `@keyframes` для эффектов.\n- **Переменные CSS**: `--color` для тем.\n- **CSS Houdini**: API для кастомных стилей (Paint API).",
+        "codeExample": {
+          "description": "Grid с анимацией:",
+          "code": ".grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n  gap: 10px;\n}\n.card {\n  background: var(--primary-color, #3498db);\n  padding: 10px;\n  animation: slideIn 0.5s ease;\n}\n@keyframes slideIn {\n  from { transform: translateY(20px); opacity: 0; }\n  to { transform: translateY(0); opacity: 1; }\n}"
+        }
+      },
+      "quiz": [
+        { "question": "`grid-template-columns` задает строки?", "answer": false },
+        { "question": "Переменные CSS наследуются?", "answer": true },
+        { "question": "Houdini поддерживает Paint API?", "answer": true },
+        { "question": "`transition` создает сложные анимации?", "answer": false }
+      ],
+      "tasks": [
+        "Создать галерею с Flexbox.",
+        "Реализовать Grid для макета страницы.",
+        "Добавить анимацию с `@keyframes`.",
+        "Использовать CSS Houdini для кастомного фона."
+      ]
+    },
+    {
+      "topic": "JavaScript",
+      "basics": {
+        "title": "Основы JavaScript",
+        "content": "JavaScript — язык для динамики веб-страниц. Основы:\n- **Типы данных**: Примитивы (\"number\", \"string\", \"boolean\", \"null\", \"undefined\", \"symbol\", \"bigint\") и объекты",
+        "codeExample": {
+          "description": "Функция для работы с DOM:",
+          "code": "function toggleClass(elementId, className) {\n  const element = document.getElementById(elementId);\n  element.classList.toggle(className);\n}\n// Использование:\ntoggleClass('myDiv', 'hidden');"
+        }
+      },
+      "advanced": {
+        "title": "Продвинутые темы в JavaScript",
+        "content": "- **Промисы**: Управление асинхронностью (`Promise`, `async/await`, цепочки).\n- **Замыкания**: Функции, сохраняющие доступ к внешним переменным.\n- **Рекурсия**: Решение задач через вызов функции самой себя, оптимизация (хвостовая рекурсия).\n- **ООП**: Классы, прототипы, наследование.",
+        "codeExample": {
+          "description": "Промисы и замыкание:",
+          "code": "async function fetchData(url) {\n  try {\n    const response = await fetch(url);\n    return await response.json();\n  } catch (error) {\n    console.error('Error:', error);\n  }\n}\n\nfunction createCounter() {\n  let count = 0;\n  return function() {\n    return ++count;\n  };\n}\nconst counter = createCounter();\nconsole.log(counter()); // 1\nconsole.log(counter()); // 2"
+        }
+      },
+      "quiz": [
+        { "question": "Промисы всегда выполняются асинхронно?", "answer": true },
+        { "question": "Замыкания сохраняют область видимости?", "answer": true },
+        { "question": "Рекурсия всегда эффективнее итерации?", "answer": false },
+        { "question": "Классы в JS используют прототипы?", "answer": true }
+      ],
+      "tasks": [
+        "Создать цепочку промисов для последовательных запросов.",
+        "Реализовать счетчик с замыканием.",
+        "Написать рекурсивную функцию для факториала.",
+        "Создать класс для управления списком задач."
+      ]
+    },
+    {
+      "topic": "TypeScript",
+      "basics": {
+        "title": "Основы TypeScript",
+        "content": "TypeScript — надмножество JavaScript с типизацией. Основы:\n- **Типы**: `number`, `string`, `boolean`, `any`, `unknown`.\n- **Интерфейсы**: Описание структуры объектов.\n- **Типизация функций**: Указание типов аргументов и возвращаемого значения.\n- **Сужение типов**: Использование `typeof`, `instanceof`.",
+        "codeExample": {
+          "description": "Интерфейс и функция с типами:",
+          "code": "interface User {\n  id: number;\n  name: string;\n}\n\nfunction greet(user: User): string {\n  return `Hello, ${user.name}!`;\n}\n\nconst user: User = { id: 1, name: 'Alice' };\nconsole.log(greet(user)); // Hello, Alice!"
+        }
+      },
+      "advanced": {
+        "title": "Продвинутые темы в TypeScript",
+        "content": "- **Дженерики**: Универсальные типы для компонентов и функций.\n- **Утилитарные типы**: `Partial`, `Pick`, `Omit` для манипуляций с типами.\n- **Интеграция с React**: Типизация компонентов, хуков, пропсов.\n- **Модули**: Импорт/экспорт типов, декларации.",
+        "codeExample": {
+          "description": "Дженерик-функция и React-компонент:",
+          "code": "function identity<T>(value: T): T {\n  return value;\n}\nconsole.log(identity<string>('test')); // test\n\ninterface Props {\n  title: string;\n}\nconst Title: React.FC<Props> = ({ title }) => <h1>{title}</h1>;\n// Использование: <Title title=\"My App\" />"
+        }
+      },
+      "quiz": [
+        { "question": "`any` безопасен для использования?", "answer": false },
+        { "question": "Дженерики позволяют создавать универсальные типы?", "answer": true },
+        { "question": "TypeScript компилируется в JavaScript?", "answer": true },
+        { "question": "`Partial` делает все свойства необязательными?", "answer": true }
+      ],
+      "tasks": [
+        "Создать интерфейс для формы и функцию с типами.",
+        "Реализовать дженерик-функцию для фильтрации массива.",
+        "Типизировать React-компонент с пропсами и хуками.",
+        "Использовать `Pick` для создания подмножества интерфейса."
+      ]
+    }
+  ]
