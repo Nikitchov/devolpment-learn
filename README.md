@@ -1,12 +1,81 @@
-# React + Vite
+# Dev Learn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Dev Learn** — сайт для подготовки к собеседованиям. Здесь можно практиковаться и отрабатывать задачи по React, JavaScript, TypeScript и верстке. Проект создан с использованием **React** и **Vite**, а также включает серверную часть.
 
-Currently, two official plugins are available:
+С помощью **Dev Learn** вы можете не только улучшить свои технические навыки, но и подготовиться к собеседованиям, что поможет вам быстро найти работу фронтенд разработчиком.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Стек технологий
 
-## Expanding the ESLint configuration
+- **Frontend**: React, Vite
+- **Backend**: Node.js
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Запуск проекта
+
+### 1. Клонирование репозитория
+
+Сначала клонируйте репозиторий на свой локальный компьютер:
+
+```bash
+git clone https://github.com/your-username/dev-learn.git
+cd dev-learn
+```
+
+### 2. Установка зависимостей
+
+**Для клиента**:  
+Установите все зависимости для фронтенда:
+
+```bash
+npm install
+```
+
+**Для сервера**:  
+Перейдите в папку с сервером и установите зависимости:
+
+```bash
+cd server
+npm install
+```
+
+### 3. Запуск проекта
+
+**Запуск клиента**:  
+Перейдите в корневую директорию проекта и выполните команду:
+
+```bash
+npm run dev
+```
+
+Откройте браузер и перейдите по адресу [http://localhost:3000](http://localhost:3000), чтобы увидеть сайт.
+
+**Запуск сервера**:  
+Перейдите в папку с сервером и выполните команду:
+
+```bash
+node server.cjs
+```
+
+Сервер будет запущен и готов к работе.
+
+## Описание проекта
+
+Проект ориентирован на подготовку к собеседованиям с возможностью практиковать задачи по следующим темам:
+
+- **React**: компоненты, состояние, хуки
+- **JavaScript**: базовые и продвинутые задачи
+- **TypeScript**: типизация, интерфейсы, классы
+- **Верстка**: отработка навыков создания адаптивных интерфейсов
+
+Этот сайт поможет вам не только развить навыки программирования, но и эффективно подготовиться к собеседованиям, что ускорит поиск работы как фронтенд разработчика.
+
+## Структура проекта
+
+```
+/client         # Фронтенд на React
+/server         # Серверная часть (Node.js)
+/public         # Статические файлы
+```
+
+## Вклад
+
+Пожелания по улучшению проекта всегда приветствуются! Открыт для предложений и Pull Requests.
